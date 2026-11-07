@@ -6,110 +6,121 @@
 <meta name="robots" content="noindex">
 <title>Nazywanie kolorów C5</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Playfair+Display:wght@600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <style>
-/* Layout: one narrow column; the task runs on a dark "stage" so all four ink colours read equally. Light-only by design. */
-html,body{margin:0}
-[hidden]{display:none!important}
-*,*::before,*::after{box-sizing:border-box}
+/* Layout: plain protocol page — header strip, numbered procedure, flat controls; task runs full-screen on black. */
 :root{
-  --paper:#fffdf9; --ink:#2b2118; --muted:#6f6357; --line:#e6ddd0; --wash:#f6f1e9;
-  --accent:#6b93b5; --accent-ink:#3f6a8f; --stage:#231b14;
-  --ok:#2f7d4f; --bad:#b3362c;
-  --c-czerwony:#e03131; --c-zielony:#2f9e44; --c-niebieski:#3b6fe0; --c-zolty:#f2c018;
-  --display:"Playfair Display",Georgia,serif;
-  --body:"Atkinson Hyperlegible",system-ui,-apple-system,sans-serif;
+  --bg:#ffffff; --ink:#16191d; --muted:#5b636d; --line:#d5d9de; --soft:#f3f4f6;
+  --accent:#1d3d63; --accent-2:#7f9bb8; --ok:#1f7a45; --bad:#b4271f;
+  --c-czerwony:#e8302a; --c-zielony:#1fa34a; --c-niebieski:#2f6be0; --c-zolty:#f4d000;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
   color-scheme:light;
 }
-html,body{height:100%}
-body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.wrap{max-width:560px;margin:0 auto;padding-block:20px 40px;display:flex;flex-direction:column;gap:18px}
-.wide{max-width:960px}
-h1,h2{font-family:var(--display);font-weight:700;line-height:1.15;text-wrap:balance;margin:0}
-h1{font-size:30px} h2{font-size:22px}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5}
+.top{border-bottom:1px solid var(--line);padding:10px max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px));
+  display:flex;justify-content:space-between;gap:12px;font-size:12px;color:var(--muted);letter-spacing:.02em}
+.top b{color:var(--ink);font-weight:600}
+.top span:last-child{font-family:var(--mono);white-space:nowrap}
+a{color:var(--accent)}
+.wrap{max-width:600px;margin:0 auto;padding:24px max(16px,env(safe-area-inset-right,0px)) 48px max(16px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:20px}
+.wide{max-width:1000px}
+h1{font-size:24px;font-weight:600;line-height:1.25;margin:0;letter-spacing:-.01em}
+h2{font-size:15px;font-weight:600;margin:0}
 p{margin:0}
-.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink);font-weight:700}
-.muted{color:var(--muted)}
-.card{border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:14px;background:var(--paper)}
-label{font-weight:700;font-size:15px;display:flex;flex-direction:column;gap:6px}
-input,select,textarea{font:inherit;color:var(--ink);background:#fff;border:1px solid #cfc4b4;border-radius:10px;padding:10px 12px}
-textarea{min-height:110px;resize:vertical;font-size:15px}
+.muted,.note{color:var(--muted)}
+.note{font-size:13px}
+.step{display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--line);padding-top:16px}
+.step h2 span{font-family:var(--mono);color:var(--muted);font-weight:500;margin-right:8px}
+ul.plain{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+label{font-size:14px;font-weight:500;display:flex;flex-direction:column;gap:6px}
+label.check{flex-direction:row;align-items:flex-start;gap:10px;font-weight:400}
+label.check input{width:18px;height:18px;margin-top:2px;flex:none;accent-color:var(--accent)}
+input,select,textarea{font:inherit;font-size:16px;color:var(--ink);background:#fff;border:1px solid #b9c0c8;border-radius:3px;padding:9px 10px}
+textarea{min-height:110px;resize:vertical;font-family:var(--mono);font-size:13px}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 button{font:inherit;cursor:pointer;touch-action:manipulation}
-.btn{background:var(--ink);color:var(--paper);border:0;border-radius:12px;padding:14px 18px;font-weight:700;font-size:17px}
-.btn.secondary{background:var(--wash);color:var(--ink);border:1px solid var(--line)}
+.btn{background:var(--accent);color:#fff;border:0;border-radius:3px;padding:12px 18px;font-weight:600;font-size:15px}
+.btn.secondary{background:#fff;color:var(--ink);border:1px solid #b9c0c8}
 .btn:disabled{opacity:.45;cursor:default}
-:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-.example{background:var(--stage);border-radius:12px;padding:16px;text-align:center;color:#fff}
-.example b{font-size:30px;letter-spacing:.04em;color:var(--c-niebieski)}
-.err{color:var(--bad);font-size:14px;font-weight:700}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.example{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.example .stage{background:#000;padding:18px;text-align:center;font-family:Arial,Helvetica,sans-serif;font-weight:700;font-size:26px;letter-spacing:.04em;color:var(--c-niebieski)}
+.example .ans{padding:0 16px;font-size:14px;color:var(--muted)}
+.example .ans b{color:var(--ink)}
+.err{color:var(--bad);font-size:14px;font-weight:500}
+.box{border:1px solid var(--line);border-radius:3px;padding:16px;display:flex;flex-direction:column;gap:12px}
 
 /* task */
-#task{position:fixed;inset:0;background:var(--stage);display:flex;flex-direction:column;
-  padding:calc(env(safe-area-inset-top,0px) + 12px) max(16px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 16px) max(16px,env(safe-area-inset-left,0px));gap:12px;user-select:none;-webkit-user-select:none}
-.prog{height:4px;background:#ffffff22;border-radius:2px;overflow:hidden}
-.prog i{display:block;height:100%;width:0;background:var(--accent)}
+#task{position:fixed;inset:0;background:#000;color:#fff;display:flex;flex-direction:column;
+  padding:calc(env(safe-area-inset-top,0px) + 10px) max(16px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 16px) max(16px,env(safe-area-inset-left,0px));gap:12px;user-select:none;-webkit-user-select:none}
+.prog{height:2px;background:#333}
+.prog i{display:block;height:100%;width:0;background:#888}
 .stimbox{flex:1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;min-height:0}
-#stim{font-family:var(--body);font-weight:700;font-size:clamp(40px,12vw,76px);letter-spacing:.04em;line-height:1}
-#fix{color:#fff;font-size:48px;font-weight:400}
-#fb{height:24px;font-weight:700;font-size:18px}
-.keys{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:560px;width:100%;margin:0 auto}
-.key{border:0;border-radius:14px;height:clamp(70px,13vh,110px);font-weight:700;font-size:18px;color:#fff;letter-spacing:.03em}
-.key[data-c="zolty"]{color:var(--ink)}
-.key:active{transform:scale(.97)}
-.key[disabled]{opacity:.85}
-.taskhint{color:#ffffffaa;text-align:center;font-size:14px}
+#stim{font-family:Arial,Helvetica,sans-serif;font-weight:700;font-size:clamp(40px,12vw,72px);letter-spacing:.03em;line-height:1}
+#fix{color:#fff;font-family:Arial,Helvetica,sans-serif;font-size:44px;font-weight:400;line-height:1}
+#fb{height:22px;font-size:16px;font-weight:600}
+.keys{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:560px;width:100%;margin:0 auto}
+.key{border:0;border-radius:2px;height:clamp(64px,12vh,96px);font-family:Arial,Helvetica,sans-serif;font-weight:700;font-size:15px;color:#fff;letter-spacing:.06em;text-transform:uppercase}
+.key[data-c="zolty"]{color:#16191d}
+.key:active{filter:brightness(.85)}
+.taskhint{color:#8a8f96;text-align:center;font-size:13px}
 
 /* results */
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.stat{background:var(--wash);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:2px}
-.stat span{font-size:13px;color:var(--muted)}
-.stat b{font-size:22px;font-variant-numeric:tabular-nums}
-.code{font-family:ui-monospace,Menlo,monospace;font-size:20px;font-weight:700;background:var(--wash);border:1px dashed #bcae9b;border-radius:10px;padding:14px;text-align:center;word-break:break-all;user-select:all;-webkit-user-select:all}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:3px}
+.stat{padding:12px;display:flex;flex-direction:column;gap:2px}
+.stat+.stat{border-left:1px solid var(--line)}
+.stat span{font-size:12px;color:var(--muted)}
+.stat b{font-family:var(--mono);font-weight:500;font-size:20px;font-variant-numeric:tabular-nums}
+.code{font-family:var(--mono);font-size:17px;font-weight:500;background:var(--soft);border:1px solid var(--line);border-radius:3px;padding:12px;text-align:center;word-break:break-all;user-select:all;-webkit-user-select:all}
 
 /* panel */
-.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
-.kpi{border:1px solid var(--line);border-radius:12px;padding:12px}
-.kpi span{display:block;font-size:13px;color:var(--muted)}
-.kpi b{font-size:26px;font-variant-numeric:tabular-nums}
-.grid2{display:grid;grid-template-columns:1.2fr 1fr;gap:18px}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:3px}
+.kpi{padding:12px 14px}
+.kpi+.kpi{border-left:1px solid var(--line)}
+.kpi span{display:block;font-size:12px;color:var(--muted)}
+.kpi b{font-family:var(--mono);font-weight:500;font-size:22px;font-variant-numeric:tabular-nums}
+.grid2{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
 .grid2>*{min-width:0}
+.card{border:1px solid var(--line);border-radius:3px;padding:16px;display:flex;flex-direction:column;gap:12px}
 .tablebox{overflow-x:auto}
-table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
+table{border-collapse:collapse;width:100%;font-size:13px;font-family:var(--mono);font-variant-numeric:tabular-nums}
 th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
 th:first-child,td:first-child{text-align:left}
-th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
-.x{background:none;border:0;color:var(--bad);font-size:18px;padding:0 4px}
-.apa{background:var(--wash);border-radius:10px;padding:12px;font-size:15px}
-.toolbar{display:flex;flex-wrap:wrap;gap:10px}
-.note{font-size:14px;color:var(--muted)}
-@media (max-width:720px){.grid2{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}}
-@media (prefers-reduced-motion:reduce){.key:active{transform:none}}
+th{font-family:var(--sans);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.x{background:none;border:0;color:var(--bad);font-size:16px;padding:0 4px;font-family:var(--sans)}
+.apa{background:var(--soft);border-radius:3px;padding:12px;font-size:14px}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px}
+@media (max-width:720px){.grid2{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}.kpi:nth-child(3){border-left:0}.kpi:nth-child(n+3){border-top:1px solid var(--line)}}
 </style>
 </head>
 <body>
-
+<header class="top"><span><b>Psychologia poznawcza</b> · SWPS Poznań · grupa C5</span><span>STR-C5 · v2</span></header>
 
 <!-- ============ PARTICIPANT ============ -->
 <main id="intro" class="wrap">
-  <div class="eyebrow">Psychologia poznawcza · grupa C5</div>
-  <h1>Nazywanie kolorów</h1>
-  <p>Zobaczysz kolejno słowa wyświetlane w różnych kolorach. Twoje zadanie: <b>stuknij kolor, którym napisane jest słowo</b>, a nie to, co słowo oznacza. Odpowiadaj jak najszybciej, ale bez pomyłek.</p>
-  <div class="example">
-    <b>CZERWONY</b>
-    <p style="margin-top:6px">Tu poprawna odpowiedź to <b style="font-size:inherit;color:#fff">niebieski</b>.</p>
-  </div>
-  <p class="muted">Badanie jest anonimowe i trwa około 2 minut. Podajesz tylko wiek i płeć.</p>
-  <div class="card" id="already" hidden>
-    <p><b>Na tym telefonie badanie zostało już wykonane.</b> Każda osoba robi je tylko raz. Twój kod:</p>
+  <h1>Badanie: nazywanie kolorów</h1>
+  <section class="step">
+    <h2><span>1</span>Informacja dla uczestnika</h2>
+    <ul class="plain">
+      <li>Badanie jest częścią ćwiczeń z psychologii poznawczej i trwa około 2 minut.</li>
+      <li>Jest anonimowe. Zbieramy tylko wiek, płeć i czasy odpowiedzi.</li>
+      <li>Udział jest dobrowolny. Możesz przerwać w każdej chwili, zamykając stronę.</li>
+    </ul>
+  </section>
+  <div class="box" id="already" hidden>
+    <p><b>Na tym urządzeniu badanie zostało już wykonane.</b> Każda osoba bierze udział tylko raz. Kod wyniku:</p>
     <div class="code" id="oldCode"></div>
-    <p class="note">Jeśli z tego telefonu korzysta teraz inna osoba, wypełnij formularz poniżej.</p>
+    <p class="note">Jeśli z tego urządzenia korzysta teraz inna osoba, wypełnij formularz poniżej.</p>
   </div>
-  <form id="meta" class="card" novalidate>
+  <form id="meta" class="step" novalidate>
+    <h2><span>2</span>Metryczka</h2>
     <div class="row">
       <label for="age">Wiek
-        <input id="age" type="number" inputmode="numeric" min="16" max="99" placeholder="np. 21" required>
+        <input id="age" type="number" inputmode="numeric" min="16" max="99" placeholder="lata" required>
       </label>
       <label for="sex">Płeć
         <select id="sex" required>
@@ -128,17 +139,20 @@ th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute
         <option value="T">tak</option>
       </select>
     </label>
-    <p id="metaErr" class="err" hidden>Uzupełnij wiek (16–99), płeć i pytanie o kolory.</p>
-    <button class="btn" type="submit">Zacznij próbę treningową</button>
+    <h2 style="margin-top:8px"><span>3</span>Instrukcja</h2>
+    <p>Na ekranie pojawią się słowa w różnych kolorach. Naciśnij przycisk w <b>kolorze liter</b>, ignorując znaczenie słowa. Odpowiadaj szybko i dokładnie.</p>
+    <div class="example"><div class="stage">CZERWONY</div><p class="ans">poprawnie:<br><b>niebieski</b></p></div>
+    <label class="check" for="consent"><input id="consent" type="checkbox">Zapoznałam(-em) się z informacją i zgadzam się na udział w badaniu.</label>
+    <p id="metaErr" class="err" hidden>Uzupełnij wiek (16–99), płeć, pytanie o kolory i zaznacz zgodę.</p>
+    <button class="btn" type="submit">Rozpocznij trening (8 prób)</button>
   </form>
-  <p class="note" id="panelLink" hidden><a href="#panel">Panel zespołu: zbieranie wyników</a></p>
+  <p class="note" id="panelLink" hidden><a href="#panel">Panel zespołu</a></p>
 </main>
 
 <main id="between" class="wrap" hidden>
-  <div class="eyebrow">Trening zakończony</div>
-  <h1>Teraz właściwe zadanie</h1>
-  <p>48 słów, bez informacji o poprawności. Trzymaj palce blisko przycisków i odpowiadaj szybko.</p>
-  <button class="btn" id="startMain" type="button">Start</button>
+  <h1>Trening zakończony</h1>
+  <p>Część właściwa: 48 prób, bez informacji o poprawności odpowiedzi. Trzymaj palce blisko przycisków.</p>
+  <button class="btn" id="startMain" type="button">Rozpocznij część właściwą</button>
 </main>
 
 <div id="task" hidden>
@@ -148,46 +162,46 @@ th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute
     <div id="stim"></div>
     <div id="fb"></div>
   </div>
-  <p class="taskhint" id="taskhint">Stuknij kolor liter</p>
+  <p class="taskhint" id="taskhint">Naciśnij kolor liter</p>
   <div class="keys" id="keys"></div>
 </div>
 
 <main id="done" class="wrap" hidden>
-  <div class="eyebrow">Dziękujemy za udział</div>
-  <h1>Twoje wyniki</h1>
+  <h1>Dziękujemy za udział</h1>
+  <p class="muted">Średni czas poprawnych odpowiedzi w każdym warunku:</p>
   <div class="stats">
     <div class="stat"><span>zgodne</span><b id="rZ">–</b></div>
     <div class="stat"><span>neutralne</span><b id="rX">–</b></div>
     <div class="stat"><span>niezgodne</span><b id="rN">–</b></div>
   </div>
-  <p id="rEff"></p>
-  <div class="card">
-    <p><b>Wyślij ten kod zespołowi</b>, tak jak poprosi prowadząca osoba (czat grupy albo pokaż ekran).</p>
+  <p id="rEff" class="note"></p>
+  <section class="step">
+    <h2>Kod wyniku</h2>
+    <p>Skopiuj kod i wyślij go na czat grupy.</p>
     <div class="code" id="code"></div>
     <button class="btn" id="copy" type="button">Kopiuj kod</button>
     <p class="note" id="copyMsg" hidden></p>
-  </div>
+  </section>
 </main>
 
 <!-- ============ TEAM PANEL ============ -->
 <main id="panel" class="wrap wide" hidden>
-  <div class="eyebrow">Panel zespołu · efekt Stroopa</div>
-  <h1>Wyniki grupy</h1>
+  <h1>Panel zespołu: wyniki grupy</h1>
   <p class="note" id="storeNote">Ładuję zapisane wyniki…</p>
   <div class="kpis">
-    <div class="kpi"><span>osoby badane</span><b id="kN">0</b></div>
+    <div class="kpi"><span>N w analizie</span><b id="kN">0</b></div>
     <div class="kpi"><span>efekt Stroopa (N − Z)</span><b id="kEff">–</b></div>
-    <div class="kpi"><span>t (test par)</span><b id="kT">–</b></div>
-    <div class="kpi"><span>efekt u ilu osób</span><b id="kPos">–</b></div>
+    <div class="kpi"><span>t (próby zależne)</span><b id="kT">–</b></div>
+    <div class="kpi"><span>efekt dodatni</span><b id="kPos">–</b></div>
   </div>
   <div class="grid2">
     <section class="card">
-      <h2>Średni czas reakcji</h2>
+      <h2>Średni czas reakcji w warunkach</h2>
       <div id="chart" aria-label="Wykres średnich czasów reakcji"></div>
       <p class="note">Słupki błędu: ±1 błąd standardowy dla prób zależnych (Cousineau, 2005; Morey, 2008). Uśredniono średnie poszczególnych osób (tylko poprawne odpowiedzi, 200–2500 ms). Wykluczenie: trudności z rozróżnianiem kolorów, ponad 25% błędów albo brak ważnych prób w którymś warunku.</p>
     </section>
     <section class="card">
-      <h2>Do raportu</h2>
+      <h2>Opis do raportu</h2>
       <div class="apa" id="apa">Dodaj wyniki, aby zobaczyć opis.</div>
       <div class="apa" id="sample">–</div>
       <div class="toolbar">
@@ -199,7 +213,7 @@ th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute
   </div>
   <section class="card">
     <h2>Dodaj kody uczestników</h2>
-    <p class="note">Wklej jeden lub wiele kodów naraz (np. skopiowane z czatu grupy). Powtórzone kody są pomijane.</p>
+    <p class="note">Wklej jeden lub wiele kodów naraz, np. skopiowanych z czatu grupy. Powtórzone kody są pomijane.</p>
     <label for="codes">Kody
       <textarea id="codes" placeholder="STR2-7QK2-21-K-N-642-801-655-0-2-1"></textarea>
     </label>
@@ -255,7 +269,7 @@ let list=[],idx=0,phase="",results=[],onset=0,timer=null,accepting=false,meta={}
 let wake=null;
 async function keepAwake(){try{wake=await navigator.wakeLock.request("screen")}catch(e){}}
 
-function runBlock(trials,ph){list=trials;idx=0;phase=ph;$("taskhint").textContent=ph==="practice"?"Trening · stuknij kolor liter":"Stuknij kolor liter";show("task");keepAwake();setTimeout(next,600)}
+function runBlock(trials,ph){list=trials;idx=0;phase=ph;$("taskhint").textContent=ph==="practice"?"Trening · naciśnij kolor liter":"Naciśnij kolor liter";show("task");keepAwake();setTimeout(next,600)}
 function next(){
   if(idx>=list.length){return phase==="practice"?show("between"):finish()}
   $("progbar").style.width=(idx/list.length*100)+"%";
@@ -273,8 +287,8 @@ function respond(choice){
   $("stim").textContent="";
   if(phase==="main")results.push({cond:tr.cond,rt,correct});
   const fb=$("fb");
-  if(phase==="practice"){fb.textContent=choice<0?"Za wolno":correct?"Dobrze":"Błąd";fb.style.color=correct?"#7ddc96":"#ff8a80"}
-  else if(!correct){fb.textContent=choice<0?"Za wolno":"Błąd";fb.style.color="#ff8a80"}
+  if(phase==="practice"){fb.textContent=choice<0?"Za wolno":correct?"Dobrze":"Błąd";fb.style.color=correct?"#5fc77f":"#ff6b5f"}
+  else if(!correct){fb.textContent=choice<0?"Za wolno":"Błąd";fb.style.color="#ff6b5f"}
   idx++;setTimeout(next,phase==="practice"?700:(correct?ITI_MS:600));
 }
 keys.addEventListener("pointerdown",e=>{const b=e.target.closest(".key");if(!b)return;e.preventDefault();respond(+b.dataset.i)});
@@ -303,7 +317,7 @@ $("copy").addEventListener("click",()=>{const c=$("code").textContent,m=$("copyM
 
 $("meta").addEventListener("submit",e=>{e.preventDefault();
   const age=parseInt($("age").value,10),sex=$("sex").value,cv=$("cv").value;
-  if(!(age>=16&&age<=99)||!sex||!cv){$("metaErr").hidden=false;return}
+  if(!(age>=16&&age<=99)||!sex||!cv||!$("consent").checked){$("metaErr").hidden=false;return}
   $("metaErr").hidden=true;meta={age,sex,cv};results=[];runBlock(practiceTrials(),"practice")});
 $("startMain").addEventListener("click",()=>runBlock(mainTrials(),"main"));
 
@@ -349,7 +363,7 @@ function render(){
   const grand=mean(z.concat(x,n)),pm=list.map((r,i)=>(z[i]+x[i]+n[i])/3);
   const norm=a=>a.map((v,i)=>v-pm[i]+grand);
   const se=a=>a.length>1?sd(norm(a))/Math.sqrt(a.length)*Math.sqrt(3/2):0;
-  $("chart").innerHTML=chartSvg([{l:"zgodne",m:mean(z),e:se(z),c:"var(--accent)"},{l:"neutralne",m:mean(x),e:se(x),c:"#a9bfd3"},{l:"niezgodne",m:mean(n),e:se(n),c:"var(--accent-ink)"}]);
+  $("chart").innerHTML=chartSvg([{l:"zgodne",m:mean(z),e:se(z),c:"#9fb3c8"},{l:"neutralne",m:mean(x),e:se(x),c:"#c9d3de"},{l:"niezgodne",m:mean(n),e:se(n),c:"#1d3d63"}]);
   const s=a=>N>1?fmt(sd(a)):"–";
   const errAll=k=>fmt(mean(list.map(r=>r[k]))/16*100,1);
   $("apa").innerHTML=`Średni czas nazywania koloru w warunku niezgodnym (<i>M</i> = ${fmt(mean(n))} ms, <i>SD</i> = ${s(n)}) był ${md>0?"dłuższy":"krótszy"} niż w warunku zgodnym (<i>M</i> = ${fmt(mean(z))} ms, <i>SD</i> = ${s(z)})${tTxt}. W warunku neutralnym <i>M</i> = ${fmt(mean(x))} ms (<i>SD</i> = ${s(x)}). Średni efekt Stroopa wyniósł ${fmt(md)} ms i wystąpił u ${d.filter(v=>v>0).length} z ${N} osób. Odsetek błędów: zgodne ${errAll("ez")}%, neutralne ${errAll("ex")}%, niezgodne ${errAll("en")}%.`;
@@ -358,17 +372,17 @@ function render(){
 }
 function chartSvg(bars){
   const W=420,H=280,L=52,B=40,T=16,R=12,ph=H-T-B,pw=W-L-R;
-  if(!bars)return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img"><text x="${W/2}" y="${H/2}" text-anchor="middle" fill="#6f6357" font-size="14">Brak wyników. Dodaj kody poniżej.</text></svg>`;
+  if(!bars)return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img"><text x="${W/2}" y="${H/2}" text-anchor="middle" fill="#5b636d" font-size="14">Brak wyników. Dodaj kody poniżej.</text></svg>`;
   const top=Math.max(...bars.map(b=>b.m+b.e));const step=top>1200?400:top>600?200:100;const max=Math.ceil(top*1.1/step)*step;
   const y=v=>T+ph-v/max*ph;let g="";
-  for(let v=0;v<=max;v+=step)g+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="#e6ddd0"/><text x="${L-8}" y="${y(v)+4}" text-anchor="end" font-size="12" fill="#6f6357">${v}</text>`;
+  for(let v=0;v<=max;v+=step)g+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="#d5d9de"/><text x="${L-8}" y="${y(v)+4}" text-anchor="end" font-size="12" fill="#5b636d">${v}</text>`;
   const bw=pw/bars.length*0.56;
   bars.forEach((b,i)=>{const cx=L+pw/bars.length*(i+0.5);
-    g+=`<rect x="${cx-bw/2}" y="${y(b.m)}" width="${bw}" height="${y(0)-y(b.m)}" fill="${b.c}" rx="3"/>`+
-    (b.e?`<line x1="${cx}" x2="${cx}" y1="${y(b.m+b.e)}" y2="${y(b.m-b.e)}" stroke="#2b2118" stroke-width="1.5"/><line x1="${cx-8}" x2="${cx+8}" y1="${y(b.m+b.e)}" y2="${y(b.m+b.e)}" stroke="#2b2118" stroke-width="1.5"/><line x1="${cx-8}" x2="${cx+8}" y1="${y(b.m-b.e)}" y2="${y(b.m-b.e)}" stroke="#2b2118" stroke-width="1.5"/>`:"")+
-    `<text x="${cx}" y="${y(b.m+b.e)-8}" text-anchor="middle" font-size="13" font-weight="700" fill="#2b2118">${Math.round(b.m)}</text>`+
-    `<text x="${cx}" y="${H-B+20}" text-anchor="middle" font-size="13" fill="#2b2118">${b.l}</text>`});
-  g+=`<text transform="translate(14 ${T+ph/2}) rotate(-90)" text-anchor="middle" font-size="12" fill="#6f6357">czas reakcji (ms)</text>`;
+    g+=`<rect x="${cx-bw/2}" y="${y(b.m)}" width="${bw}" height="${y(0)-y(b.m)}" fill="${b.c}" rx="0"/>`+
+    (b.e?`<line x1="${cx}" x2="${cx}" y1="${y(b.m+b.e)}" y2="${y(b.m-b.e)}" stroke="#16191d" stroke-width="1.5"/><line x1="${cx-8}" x2="${cx+8}" y1="${y(b.m+b.e)}" y2="${y(b.m+b.e)}" stroke="#16191d" stroke-width="1.5"/><line x1="${cx-8}" x2="${cx+8}" y1="${y(b.m-b.e)}" y2="${y(b.m-b.e)}" stroke="#16191d" stroke-width="1.5"/>`:"")+
+    `<text x="${cx}" y="${y(b.m+b.e)-8}" text-anchor="middle" font-size="13" font-weight="700" fill="#16191d">${Math.round(b.m)}</text>`+
+    `<text x="${cx}" y="${H-B+20}" text-anchor="middle" font-size="13" fill="#16191d">${b.l}</text>`});
+  g+=`<text transform="translate(14 ${T+ph/2}) rotate(-90)" text-anchor="middle" font-size="12" fill="#5b636d">czas reakcji (ms)</text>`;
   return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Średnie czasy reakcji w trzech warunkach">${g}</svg>`;
 }
 function saveLocal(){try{localStorage.setItem("stroop_rows",JSON.stringify(rows))}catch(e){}}
