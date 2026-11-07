@@ -106,21 +106,25 @@ th{font-family:var(--sans);font-size:11px;font-weight:600;text-transform:upperca
   <section class="step">
     <h2><span>1</span>Informacja dla uczestnika</h2>
     <ul class="plain">
-      <li>Badanie jest częścią ćwiczeń z psychologii poznawczej i trwa około 2 minut.</li>
-      <li>Jest anonimowe. Zbieramy tylko wiek, płeć i czasy odpowiedzi.</li>
-      <li>Udział jest dobrowolny. Możesz przerwać w każdej chwili, zamykając stronę.</li>
+      <li><b>Cel:</b> badanie dotyczy uwagi i szybkości reagowania na bodźce wzrokowe. Jest częścią ćwiczeń z psychologii poznawczej.</li>
+      <li><b>Przebieg:</b> krótki trening i zadanie na ekranie telefonu, łącznie około 2 minut.</li>
+      <li><b>Ryzyko:</b> badanie nie wiąże się z żadnym ryzykiem ani dyskomfortem poza krótkim wysiłkiem skupienia.</li>
+      <li><b>Dobrowolność:</b> udział jest dobrowolny. Możesz przerwać w każdej chwili bez podawania powodu, zamykając stronę.</li>
+      <li><b>Anonimowość:</b> nie zbieramy imienia ani danych kontaktowych, tylko wiek, płeć i odpowiedzi w zadaniu. Wyniki zostaną przedstawione wyłącznie zbiorczo, w raporcie zaliczeniowym.</li>
+      <li><b>Wyjaśnienie:</b> szczegółowy cel badania omówimy na zajęciach zaraz po jego zakończeniu.</li>
+      <li><b>Kontakt:</b> zespół badawczy grupy C5 (Weronika, Martin, Arek, Bartosz), obecny na sali.</li>
     </ul>
   </section>
   <div class="box" id="already" hidden>
     <p><b>Na tym urządzeniu badanie zostało już wykonane.</b> Każda osoba bierze udział tylko raz. Kod wyniku:</p>
     <div class="code" id="oldCode"></div>
-    <p class="note">Jeśli z tego urządzenia korzysta teraz inna osoba, wypełnij formularz poniżej.</p>
+    <p>Jeśli z tego urządzenia korzysta teraz inna osoba, wypełnij formularz poniżej.</p>
   </div>
   <form id="meta" class="step" novalidate>
     <h2><span>2</span>Metryczka</h2>
     <div class="row">
       <label for="age">Wiek
-        <input id="age" type="number" inputmode="numeric" min="16" max="99" placeholder="lata" required>
+        <input id="age" type="number" inputmode="numeric" min="18" max="99" placeholder="lata" required>
       </label>
       <label for="sex">Płeć
         <select id="sex" required>
@@ -140,13 +144,21 @@ th{font-family:var(--sans);font-size:11px;font-weight:600;text-transform:upperca
       </select>
     </label>
     <h2 style="margin-top:8px"><span>3</span>Instrukcja</h2>
-    <p>Na ekranie pojawią się słowa w różnych kolorach. Naciśnij przycisk w <b>kolorze liter</b>, ignorując znaczenie słowa. Odpowiadaj szybko i dokładnie.</p>
+    <p>Na środku ekranu pojawi się krzyżyk, a po nim słowo napisane kolorową czcionką. Twoim zadaniem jest nacisnąć przycisk w <b>kolorze liter</b>. Treść słowa nie ma wpływu na poprawną odpowiedź.</p>
+    <p>Odpowiadaj <b>tak szybko, jak potrafisz, starając się nie popełniać błędów</b>. Jeśli się pomylisz, nie zatrzymuj się, tylko przejdź do następnego słowa.</p>
     <div class="example"><div class="stage">CZERWONY</div><p class="ans">poprawnie:<br><b>niebieski</b></p></div>
-    <label class="check" for="consent"><input id="consent" type="checkbox">Zapoznałam(-em) się z informacją i zgadzam się na udział w badaniu.</label>
-    <p id="metaErr" class="err" hidden>Uzupełnij wiek (16–99), płeć, pytanie o kolory i zaznacz zgodę.</p>
+    <p>Najpierw będzie 8 prób treningowych z informacją o poprawności, potem 48 prób właściwych bez tej informacji.</p>
+    <h2 style="margin-top:8px"><span>4</span>Przed rozpoczęciem</h2>
+    <ul class="plain">
+      <li>Wycisz telefon lub włącz tryb „Nie przeszkadzać”.</li>
+      <li>Trzymaj telefon pionowo, w wygodnej odległości od oczu.</li>
+      <li>Trzymaj palce blisko przycisków i nie rozmawiaj z innymi w trakcie zadania.</li>
+    </ul>
+    <label class="check" for="consent"><input id="consent" type="checkbox">Mam ukończone 18 lat, zapoznałam(-em) się z informacją powyżej i dobrowolnie zgadzam się na udział w badaniu.</label>
+    <p id="metaErr" class="err" hidden>Uzupełnij wiek (18–99), płeć, pytanie o kolory i zaznacz zgodę.</p>
     <button class="btn" type="submit">Rozpocznij trening (8 prób)</button>
   </form>
-  <p class="note" id="panelLink" hidden><a href="#panel">Panel zespołu</a></p>
+  <p id="panelLink" hidden></p>
 </main>
 
 <main id="between" class="wrap" hidden>
@@ -168,13 +180,14 @@ th{font-family:var(--sans);font-size:11px;font-weight:600;text-transform:upperca
 
 <main id="done" class="wrap" hidden>
   <h1>Dziękujemy za udział</h1>
+  <p>Twój udział w badaniu się zakończył. Jego cel i hipotezę omówimy na zajęciach, gdy wszyscy skończą.</p>
   <p class="muted">Średni czas poprawnych odpowiedzi w każdym warunku:</p>
   <div class="stats">
     <div class="stat"><span>zgodne</span><b id="rZ">–</b></div>
     <div class="stat"><span>neutralne</span><b id="rX">–</b></div>
     <div class="stat"><span>niezgodne</span><b id="rN">–</b></div>
   </div>
-  <p id="rEff" class="note"></p>
+  <p id="rEff" hidden></p>
   <section class="step">
     <h2>Kod wyniku</h2>
     <p>Skopiuj kod i wyślij go na czat grupy.</p>
@@ -187,7 +200,7 @@ th{font-family:var(--sans);font-size:11px;font-weight:600;text-transform:upperca
 <!-- ============ TEAM PANEL ============ -->
 <main id="panel" class="wrap wide" hidden>
   <h1>Panel zespołu: wyniki grupy</h1>
-  <p class="note" id="storeNote">Ładuję zapisane wyniki…</p>
+  <p id="storeNote" hidden></p>
   <div class="kpis">
     <div class="kpi"><span>N w analizie</span><b id="kN">0</b></div>
     <div class="kpi"><span>efekt Stroopa (N − Z)</span><b id="kEff">–</b></div>
@@ -198,7 +211,6 @@ th{font-family:var(--sans);font-size:11px;font-weight:600;text-transform:upperca
     <section class="card">
       <h2>Średni czas reakcji w warunkach</h2>
       <div id="chart" aria-label="Wykres średnich czasów reakcji"></div>
-      <p class="note">Słupki błędu: ±1 błąd standardowy dla prób zależnych (Cousineau, 2005; Morey, 2008). Uśredniono średnie poszczególnych osób (tylko poprawne odpowiedzi, 200–2500 ms). Wykluczenie: trudności z rozróżnianiem kolorów, ponad 25% błędów albo brak ważnych prób w którymś warunku.</p>
     </section>
     <section class="card">
       <h2>Opis do raportu</h2>
@@ -213,7 +225,6 @@ th{font-family:var(--sans);font-size:11px;font-weight:600;text-transform:upperca
   </div>
   <section class="card">
     <h2>Dodaj kody uczestników</h2>
-    <p class="note">Wklej jeden lub wiele kodów naraz, np. skopiowanych z czatu grupy. Powtórzone kody są pomijane.</p>
     <label for="codes">Kody
       <textarea id="codes" placeholder="STR2-7QK2-21-K-N-642-801-655-0-2-1"></textarea>
     </label>
@@ -225,7 +236,6 @@ th{font-family:var(--sans);font-size:11px;font-weight:600;text-transform:upperca
     <div class="tablebox"><table id="tbl"></table></div>
     <textarea id="csvOut" hidden readonly></textarea>
   </section>
-  <p class="note"><a href="#">Wróć do zadania</a></p>
 </main>
 
 <script>
@@ -317,7 +327,7 @@ $("copy").addEventListener("click",()=>{const c=$("code").textContent,m=$("copyM
 
 $("meta").addEventListener("submit",e=>{e.preventDefault();
   const age=parseInt($("age").value,10),sex=$("sex").value,cv=$("cv").value;
-  if(!(age>=16&&age<=99)||!sex||!cv||!$("consent").checked){$("metaErr").hidden=false;return}
+  if(!(age>=18&&age<=99)||!sex||!cv||!$("consent").checked){$("metaErr").hidden=false;return}
   $("metaErr").hidden=true;meta={age,sex,cv};results=[];runBlock(practiceTrials(),"practice")});
 $("startMain").addEventListener("click",()=>runBlock(mainTrials(),"main"));
 
